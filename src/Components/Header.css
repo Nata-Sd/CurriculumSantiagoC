@@ -1,0 +1,251 @@
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: linear-gradient(135deg, #020818 0%, #040d2a 50%, #050e35 100%);
+  border-bottom: 1px solid rgba(0, 180, 255, 0.3);
+  overflow: hidden;
+  animation: fadeInDown 0.7s cubic-bezier(.4, 0, .2, 1) both,
+             borderGlow 4s ease-in-out infinite;
+  transition: background 0.4s ease;
+}
+
+.header--scrolled {
+  background: rgba(4, 8, 30, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+
+.header-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 180, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 180, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 8s linear infinite;
+  opacity: 0.6;
+}
+
+
+.header-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.15), transparent);
+  animation: scanline 6s linear infinite;
+  pointer-events: none;
+}
+
+
+.header-inner {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.circuit-icon {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #001540, #002880);
+  border: 1px solid rgba(0, 212, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.25);
+  flex-shrink: 0;
+}
+
+.circuit-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00d4ff;
+  box-shadow: 0 0 8px #00d4ff;
+}
+
+
+.glitch-wrapper {
+  display: inline-block;
+}
+
+.name {
+  font-family: "Pixelify Sans", sans-serif;
+  color: #e8f4ff;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin: 0;
+  text-shadow: 0 0 30px rgba(0, 212, 255, 0.35);
+  transition: text-shadow 0.1s;
+}
+
+.name--glitch {
+  text-shadow:
+    2px  0   #4cb3d6,
+   -2px  0   #3cc269,
+    0    0   20px rgba(0, 212, 255, 0.6);
+}
+
+.subtitle {
+  font-family: 'Share Tech Mono', monospace;
+  color: #00d4ff;
+  font-size: 1rem;
+  letter-spacing: 0.35em;
+  margin: 4px 0 0 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 20, 60, 0.5);
+  border: 1px solid rgba(0, 150, 220, 0.2);
+  border-radius: 30px;
+  padding: 4px 8px;
+}
+
+.nav-link-wrapper {
+  position: relative;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Share Tech Mono', monospace;
+  color: #a0c8e8;
+  font-size: 0.83rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  position: relative;
+  transition: color 0.3s;
+  outline: none;
+}
+
+.nav-btn--hovered {
+  color: #00d4ff;
+}
+
+.nav-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  transition: transform 0.35s cubic-bezier(.4, 0, .2, 1);
+  display: block;
+}
+
+.nav-underline--visible {
+  transform: translateX(-50%) scaleX(1);
+}
+
+
+.tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 15, 40, 0.97);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  border-radius: 6px;
+  padding: 5px 12px;
+  white-space: nowrap;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.70rem;
+  letter-spacing: 0.08em;
+  color: #00d4ff;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+  animation: tooltipIn 0.2s ease both;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 15, 40, 0.97);
+  border-left: 1px solid rgba(0, 212, 255, 0.4);
+  border-top: 1px solid rgba(0, 212, 255, 0.4);
+}
+
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0, 212, 255, 0.07);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.68rem;
+  color: #7dd3f0;
+  letter-spacing: 0.1em;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88;
+  animation: pulse 2s infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 12px 16px;
+    justify-content: center;
+  }
+
+  .header-nav {
+    order: 3;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 16px;
+    width: 100%;
+  }
+
+  .status-badge {
+    order: 2;
+  }
+}

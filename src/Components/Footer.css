@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to   { background-position: 40px 40px; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 -4px 30px rgba(0, 100, 200, 0.35); }
+  50%       { box-shadow: 0 -4px 50px rgba(0, 180, 255, 0.5);  }
+}
+
+@keyframes toplineMove {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center;  }
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1);   opacity: 0.6; }
+  50%       { transform: scale(1.15); opacity: 0.2; }
+}
+
+@keyframes tooltipIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0);   }
+}
+
+
+.footer {
+  position: relative;
+  background: linear-gradient(135deg, #020818 0%, #040d2a 60%, #050e35 100%);
+  border-top: 1px solid rgba(0, 180, 255, 0.25);
+  overflow: hidden;
+  animation: fadeInUp 0.7s cubic-bezier(.4, 0, .2, 1) both,
+             borderGlow 4s ease-in-out infinite;
+}
+
+
+.footer-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 180, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 180, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 10s linear infinite;
+  opacity: 0.5;
+}
+
+
+.footer-topline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.0) 20%,
+    rgba(0, 212, 255, 0.8) 50%,
+    rgba(0, 212, 255, 0.0) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: toplineMove 4s linear infinite;
+}
+
+
+.footer-inner {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 32px 28px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+  min-width: 220px;
+}
+
+
+.avatar {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+}
+
+.avatar-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #001540, #003080);
+  border: 1px solid rgba(0, 212, 255, 0.55);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00d4ff;
+  letter-spacing: 0.1em;
+  box-shadow: 0 0 18px rgba(0, 212, 255, 0.2);
+}
+
+.avatar-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  animation: ringPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+
+.footer-name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-fullname {
+  font-family: 'Orbitron', sans-serif;
+  color: #e8f4ff;
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.25);
+}
+
+.footer-role {
+  font-family: 'Share Tech Mono', monospace;
+  color: #00d4ff;
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin: 0;
+}
+
+
+.footer-divider {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 180, 255, 0.4), transparent);
+  flex-shrink: 0;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-connect-label {
+  font-family: 'Share Tech Mono', monospace;
+  color: rgb(211, 248, 255);
+  font-size: 0.90rem;
+  letter-spacing: 0.25em;
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+
+.social-wrapper {
+  position: relative;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0, 20, 60, 0.6);
+  border: 1px solid rgba(0, 150, 220, 0.25);
+  border-radius: 22px;
+  padding: 7px 16px;
+  text-decoration: none;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78rem;
+  color: #a0c8e8;
+  letter-spacing: 0.1em;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, border-color 0.3s, background 0.3s;
+  cursor: pointer;
+}
+
+.social-btn--hovered {
+  color: #00d4ff;
+  border-color: rgba(0, 212, 255, 0.55);
+  background: rgba(0, 50, 120, 0.5);
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.15);
+}
+
+.social-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.social-label {
+  text-transform: uppercase;
+}
+
+.social-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 70%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  transition: transform 0.35s cubic-bezier(.4, 0, .2, 1);
+  display: block;
+}
+
+.social-underline--visible {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.f-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 15, 40, 0.97);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  border-radius: 6px;
+  padding: 5px 12px;
+  white-space: nowrap;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: #00d4ff;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 -4px 20px rgba(0, 212, 255, 0.15);
+  animation: tooltipIn 0.2s ease both;
+}
+
+.f-tooltip-arrow {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 15, 40, 0.97);
+  border-right: 1px solid rgba(0, 212, 255, 0.4);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.4);
+}
+
+
+.footer-bottom {
+  position: relative;
+  border-top: 1px solid rgba(0, 180, 255, 0.1);
+  padding: 12px 32px;
+  text-align: center;
+}
+
+.footer-copy {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(160, 200, 232, 0.45);
+  letter-spacing: 0.12em;
+}
+
+.footer-copy-accent {
+  color: rgba(0, 212, 255, 0.65);
+}
+
+
+@media (max-width: 640px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 20px 20px;
+    gap: 24px;
+  }
+
+  .footer-divider {
+    display: none;
+  }
+
+  .footer-bottom {
+    padding: 12px 20px;
+  }
+}

@@ -74,7 +74,7 @@ export default function Footer() {
         <div className="footer-divider" />
    
         <div className="footer-right">
-          <p className="footer-connect-label">// CONECTEMOS</p>
+          <p className="footer-connect-label"> CONECTEMOS</p>
           <div className="footer-links">
             {links.map((link) => (
               <SocialLink key={link.label} {...link} />

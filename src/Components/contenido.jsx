@@ -9,7 +9,7 @@ const PROYECTOS = [
     titulo: 'Robot evasor de obstáculos',
     descripcion: 'Autónomo con sensor ultrasónico y microcontrolador.',
     tech: ['Arduino', 'C++', 'Ultrasonido'],
-    color: '#dd8448',  // naranja eléctrico
+    color: '#dd8448', 
   },
   
   {
@@ -178,7 +178,7 @@ const Contenido = () => {
       <Section id="sobre-mi" className="section-bio">
         <div className="bio-grid">
           <div className="bio-text">
-            <p className="bio-label">// SOBRE MÍ</p>
+            <p className="bio-label"> SOBRE MÍ</p>
             <h2 className="bio-heading">Ingeniero Electrónico</h2>
             <p className="bio-body">
               Estudiante de Ingeniería Electrónica con enfoque en diseño
@@ -211,7 +211,7 @@ const Contenido = () => {
 
 
       <Section id="skills" className="section-services">
-        <p className="section-label">// SERVICIOS DESTACADOS</p>
+        <p className="section-label"> SERVICIOS DESTACADOS</p>
         <h2 className="section-heading">¿Qué puedo hacer por ti?</h2>
         <p className="section-sub">
           Soluciones adaptadas a entornos académicos o profesionales.
@@ -226,7 +226,7 @@ const Contenido = () => {
 
 
       <Section id="proyectos" className="section-projects">
-        <p className="section-label">// PROYECTOS REALIZADOS</p>
+        <p className="section-label"> PROYECTOS REALIZADOS</p>
         <h2 className="section-heading">Trabajos destacados</h2>
         <div className="projects-grid">
           {PROYECTOS.map((p, i) => (

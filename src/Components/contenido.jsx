@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './contenido.css';
 
-// 
-// DATOS — Para agregar un proyecto nuevo, solo agregá un objeto acá, 
-// 
+
 const PROYECTOS = [
   {
     id: 1,
@@ -22,26 +20,10 @@ const PROYECTOS = [
     tech: ['ESP32', 'Python', 'Solar'],
     color: '#1e90ff',   
   },
-
-  
-  // Este es el ejemplo que te dejo para cuando quieras añadir otro proyecto, solo copia y pega el array completo, el color que debes añadir sera el del borde 
-  // El resto de colores, tamaños y sombras son desde el css no desde aqui. Ahora mismo esta comentado, para que funcione retira los slash,
-  // al inicio de la linea 33-40
-
- // {  
- // id: 3,   
- //tag: 'Proyecto 03',   
- // titulo: 'Diseño PCB amplificador',   
- // descripcion: 'Amplificador de audio clase D con documentación Gerber.',
- // tech: ['KiCad', 'Eagle', 'PCB'],
- // color: '#00d4aa',  
- //},
-
-
 ];
 
 
-   {/*SERVICIOS — Aqui solo añade otro array, dentro de la constanste para LOS SERVICIOS, NO CONFUNDAS CON PROYECTOS */}
+  
 const SERVICIOS = [
   { emoji: '🔬', titulo: 'Simulación de circuitos',   desc: 'Análisis de señales, verificación funcional y validación previa a fabricación.' },
   { emoji: '🖥️', titulo: 'Diseño de PCB',             desc: 'Diseños profesionales listos para producción con documentación Gerber.' },
@@ -233,8 +215,8 @@ const Contenido = () => {
         <h2 className="section-heading">¿Qué puedo hacer por ti?</h2>
         <p className="section-sub">
           Soluciones adaptadas a entornos académicos o profesionales.
-          Desde análisis de requerimientos hasta documentación técnica.
-        </p>
+          Desde análisis de requerimientos hasta documentación técnica.</p>
+
         <div className="services-grid">
           {SERVICIOS.map((s) => (
             <ServiceCard key={s.titulo} servicio={s} />
@@ -248,8 +230,7 @@ const Contenido = () => {
         <h2 className="section-heading">Trabajos destacados</h2>
         <div className="projects-grid">
           {PROYECTOS.map((p, i) => (
-            <ProjectCard key={p.id} proyecto={p} index={i} />
-          ))}
+            <ProjectCard key={p.id} proyecto={p} index={i} /> ))}
         </div>
       </Section>
 

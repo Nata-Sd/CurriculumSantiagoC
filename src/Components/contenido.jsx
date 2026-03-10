@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './contenido.css';
 
-// ══════════════════════════════════════════════════════════════════
+// 
 // DATOS — Para agregar un proyecto nuevo, solo agregá un objeto acá, 
-// ══════════════════════════════════════════════════════════════════
+// 
 const PROYECTOS = [
   {
     id: 1,
@@ -24,11 +24,9 @@ const PROYECTOS = [
   },
 
   
-// ══════════════════════════════════════════════════════════════════
-// Este es el ejemplo que te dejo para cuando quieras añadir otro proyecto, solo copia y pega el array completo, el color que debes añadir sera el del borde 
-// El resto de colores, tamaños y sombras son desde el css no desde aqui. Ahora mismo esta comentado, para que funcione retira los slash,
-// al inicio de la linea 33-40
-// ══════════════════════════════════════════════════════════════════
+  // Este es el ejemplo que te dejo para cuando quieras añadir otro proyecto, solo copia y pega el array completo, el color que debes añadir sera el del borde 
+  // El resto de colores, tamaños y sombras son desde el css no desde aqui. Ahora mismo esta comentado, para que funcione retira los slash,
+  // al inicio de la linea 33-40
 
  // {  
  // id: 3,   
@@ -42,10 +40,8 @@ const PROYECTOS = [
 
 ];
 
-// ══════════════════════════════════════════════════════════════════
-// SERVICIOS — Aqui solo añade otro array, dentro de la constanste para LOS SERVICIOS, NO CONFUNDAS CON PROYECTOS
-// ══════════════════════════════════════════════════════════════════
 
+   {/*SERVICIOS — Aqui solo añade otro array, dentro de la constanste para LOS SERVICIOS, NO CONFUNDAS CON PROYECTOS */}
 const SERVICIOS = [
   { emoji: '🔬', titulo: 'Simulación de circuitos',   desc: 'Análisis de señales, verificación funcional y validación previa a fabricación.' },
   { emoji: '🖥️', titulo: 'Diseño de PCB',             desc: 'Diseños profesionales listos para producción con documentación Gerber.' },
@@ -97,7 +93,7 @@ function ElectricSVG() {
   );
 }
 
-// ── Tarjeta individual, aqui es para  ──────────────────────────────────
+
 const FILTERS = ['elec-orange', 'elec-blue', 'elec-cyan'];
 
 function ProjectCard({ proyecto, index }) {
@@ -127,7 +123,7 @@ function ProjectCard({ proyecto, index }) {
       <div className="card-overlay-2" />
       <div className="card-bg-glow" />
 
-      {/* Contenido */}
+   
       <div className="card-content">
         <div className="card-top">
           <span className="card-tag">{proyecto.tag}</span>
@@ -149,7 +145,7 @@ function ProjectCard({ proyecto, index }) {
   );
 }
 
-// ── Tarjeta de servicio ───────────────────────────────────────────
+
 function ServiceCard({ servicio }) {
   const [hovered, setHovered] = useState(false);
 
@@ -192,7 +188,6 @@ function Section({ id, children, className = '' }) {
 }
 
 
-// ── COMPONENTE PRINCIPAL ──────────────────────────────────────────
 const Contenido = () => {
   return (
     <div className="contenido-root">

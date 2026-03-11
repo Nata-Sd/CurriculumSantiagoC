@@ -1,82 +1,226 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './contenido.css';
+import React, { useState, useEffect, useRef } from "react";
+import "./contenido.css";
 
 
 const PROYECTOS = [
   {
     id: 1,
-    tag: 'Proyecto 01',
-    titulo: 'Robot evasor de obstáculos',
-    descripcion: 'Autónomo con sensor ultrasónico y microcontrolador.',
-    tech: ['Arduino', 'C++', 'Ultrasonido'],
-    color: '#dd8448', 
+    tag: "Proyecto 01",
+    titulo: "Robot evasor de obstáculos",
+    descripcion: "Autónomo con sensor ultrasónico y microcontrolador.",
+    tech: ["Arduino", "C++", "Ultrasonido"],
+    color: "#dd8448",
   },
-  
+
   {
     id: 2,
-    tag: 'Proyecto 02',
-    titulo: 'Sistema de riego solar',
-    descripcion: 'Integración de panel solar y control remoto vía RF.',
-    tech: ['ESP32', 'Python', 'Solar'],
-    color: '#1e90ff',   
+    tag: "Proyecto 02",
+    titulo: "Sistema de riego solar",
+    descripcion: "Integración de panel solar y control remoto vía RF.",
+    tech: ["ESP32", "Python", "Solar"],
+    color: "#1e90ff",
+  },
+  
+];
+
+const SKILLS = [
+  {
+    categoria: "Lenguajes",
+    icono: "💻",
+    color: "#1e8fff",
+    items: ["VHDL", "Python", "C#", "MATLAB", "C++",],
+  },
+  {
+    categoria: "Modelado 3D",
+    icono: "📐",
+    color: "#00d4aa",
+    items: ["FreeCAD", "Tinkercad", "Fusion 360"],
+  },
+  {
+    categoria: "Diseño de PCB",
+    icono: "🔌",
+    color: "#dd8448",
+    items: ["Altium Designer", "KiCad"],
+  },
+  {
+    categoria: "Simulación",
+    icono: "⚡",
+    color: "#a855f7",
+    items: ["Proteus", "Multisim"],
+  },
+  {
+    categoria: "Ofimática",
+    icono: "📊",
+    color: "#0ea5e9",
+    items: ["Word", "Excel", "PowerPoint", "Access", "Teams"],
   },
 ];
 
-
-  
 const SERVICIOS = [
-  { emoji: '🔬', titulo: 'Simulación de circuitos',   desc: 'Análisis de señales, verificación funcional y validación previa a fabricación.' },
-  { emoji: '🖥️', titulo: 'Diseño de PCB',             desc: 'Diseños profesionales listos para producción con documentación Gerber.' },
-  { emoji: '🤖', titulo: 'Sistemas embebidos',        desc: 'Programación de microcontroladores, integración de sensores y actuadores.' },
-  { emoji: '📋', titulo: 'Documentación técnica',     desc: 'Manuales, informes y diagramas técnicos listos para entrega.' },
-  { emoji: '🎓', titulo: 'Talleres y formación',      desc: 'Asesorías académicas y desarrollo de talleres prácticos.' },
-  { emoji: '⚙️', titulo: 'Automatización y control',  desc: 'Desarrollo de proyectos de automatización industrial y domótica.' },
+  {
+    emoji: "🔬",
+    titulo: "Simulación de circuitos",
+    desc: "Análisis de señales, verificación funcional y validación previa a fabricación.",
+  },
+  {
+    emoji: "🖥️",
+    titulo: "Diseño de PCB",
+    desc: "Diseños profesionales listos para producción con documentación Gerber.",
+  },
+  {
+    emoji: "🤖",
+    titulo: "Sistemas embebidos",
+    desc: "Programación de microcontroladores, integración de sensores y actuadores.",
+  },
+  {
+    emoji: "📋",
+    titulo: "Documentación técnica",
+    desc: "Manuales, informes y diagramas técnicos listos para entrega.",
+  },
+  {
+    emoji: "🎓",
+    titulo: "Talleres y formación",
+    desc: "Asesorías académicas y desarrollo de talleres prácticos.",
+  },
+  {
+    emoji: "⚙️",
+    titulo: "Automatización y control",
+    desc: "Desarrollo de proyectos de automatización industrial y domótica.",
+  },
 ];
-
 
 function ElectricSVG() {
   return (
     <svg className="electric-svg" aria-hidden="true">
       <defs>
-        <filter id="elec-orange" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+        <filter
+          id="elec-orange"
+          colorInterpolationFilters="sRGB"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%"
+        >
+          <feTurbulence
+            type="turbulence"
+            baseFrequency="0.02"
+            numOctaves="10"
+            result="noise1"
+            seed="1"
+          />
           <feOffset in="noise1" dx="0" dy="0" result="off1">
-            <animate attributeName="dy" values="700;0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+            <animate
+              attributeName="dy"
+              values="700;0"
+              dur="6s"
+              repeatCount="indefinite"
+              calcMode="linear"
+            />
           </feOffset>
-          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+          <feTurbulence
+            type="turbulence"
+            baseFrequency="0.02"
+            numOctaves="10"
+            result="noise2"
+            seed="1"
+          />
           <feOffset in="noise2" dx="0" dy="0" result="off2">
-            <animate attributeName="dy" values="0;-700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+            <animate
+              attributeName="dy"
+              values="0;-700"
+              dur="6s"
+              repeatCount="indefinite"
+              calcMode="linear"
+            />
           </feOffset>
           <feComposite in="off1" in2="off2" result="combined" />
-          <feDisplacementMap in="SourceGraphic" in2="combined" scale="30" xChannelSelector="R" yChannelSelector="B" />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="combined"
+            scale="30"
+            xChannelSelector="R"
+            yChannelSelector="B"
+          />
         </filter>
-        <filter id="elec-blue" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+        <filter
+          id="elec-blue"
+          colorInterpolationFilters="sRGB"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%"
+        >
           <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
           <feColorMatrix type="hueRotate" result="pt1">
-            <animate attributeName="values" values="0;360" dur=".6s" repeatCount="indefinite" calcMode="paced" />
+            <animate
+              attributeName="values"
+              values="0;360"
+              dur=".6s"
+              repeatCount="indefinite"
+              calcMode="paced"
+            />
           </feColorMatrix>
           <feComposite />
-          <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="7" seed="5" />
+          <feTurbulence
+            type="turbulence"
+            baseFrequency="0.03"
+            numOctaves="7"
+            seed="5"
+          />
           <feColorMatrix type="hueRotate" result="pt2">
-            <animate attributeName="values" values="0;333;199;286;64;168;256;157;360" dur="5s" repeatCount="indefinite" calcMode="paced" />
+            <animate
+              attributeName="values"
+              values="0;333;199;286;64;168;256;157;360"
+              dur="5s"
+              repeatCount="indefinite"
+              calcMode="paced"
+            />
           </feColorMatrix>
           <feBlend in="pt1" in2="pt2" mode="normal" result="combined" />
-          <feDisplacementMap in="SourceGraphic" in2="combined" scale="30" xChannelSelector="R" yChannelSelector="B" />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="combined"
+            scale="30"
+            xChannelSelector="R"
+            yChannelSelector="B"
+          />
         </filter>
-        <filter id="elec-cyan" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="8" seed="3" />
+        <filter
+          id="elec-cyan"
+          colorInterpolationFilters="sRGB"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.025"
+            numOctaves="8"
+            seed="3"
+          />
           <feColorMatrix type="hueRotate" result="pt1">
-            <animate attributeName="values" values="160;220;160" dur="3s" repeatCount="indefinite" calcMode="paced" />
+            <animate
+              attributeName="values"
+              values="160;220;160"
+              dur="3s"
+              repeatCount="indefinite"
+              calcMode="paced"
+            />
           </feColorMatrix>
-          <feDisplacementMap in="SourceGraphic" scale="25" xChannelSelector="G" yChannelSelector="R" />
+          <feDisplacementMap
+            in="SourceGraphic"
+            scale="25"
+            xChannelSelector="G"
+            yChannelSelector="R"
+          />
         </filter>
       </defs>
     </svg>
   );
 }
 
-
-const FILTERS = ['elec-orange', 'elec-blue', 'elec-cyan'];
+const FILTERS = ["elec-orange", "elec-blue", "elec-cyan"];
 
 function ProjectCard({ proyecto, index }) {
   const [hovered, setHovered] = useState(false);
@@ -84,18 +228,14 @@ function ProjectCard({ proyecto, index }) {
 
   return (
     <div
-      className={`card-wrap ${hovered ? 'card-wrap--hovered' : ''}`}
-      style={{ '--card-color': proyecto.color }}
+      className={`card-wrap ${hovered ? "card-wrap--hovered" : ""}`}
+      style={{ "--card-color": proyecto.color }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-
       <div className="card-inner">
         <div className="card-border-outer">
-          <div
-            className="card-main"
-            style={{ filter: `url(#${filterId})` }}
-          />
+          <div className="card-main" style={{ filter: `url(#${filterId})` }} />
         </div>
         <div className="card-glow-1" />
         <div className="card-glow-2" />
@@ -105,7 +245,6 @@ function ProjectCard({ proyecto, index }) {
       <div className="card-overlay-2" />
       <div className="card-bg-glow" />
 
-   
       <div className="card-content">
         <div className="card-top">
           <span className="card-tag">{proyecto.tag}</span>
@@ -118,7 +257,9 @@ function ProjectCard({ proyecto, index }) {
           <p className="card-desc">{proyecto.descripcion}</p>
           <div className="card-tech">
             {proyecto.tech.map((t) => (
-              <span key={t} className="card-tech-pill">{t}</span>
+              <span key={t} className="card-tech-pill">
+                {t}
+              </span>
             ))}
           </div>
         </div>
@@ -127,32 +268,67 @@ function ProjectCard({ proyecto, index }) {
   );
 }
 
-
 function ServiceCard({ servicio }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      className={`service-card ${hovered ? 'service-card--hovered' : ''}`}
+      className={`service-card ${hovered ? "service-card--hovered" : ""}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <span className="service-emoji">{servicio.emoji}</span>
       <h3 className="service-titulo">{servicio.titulo}</h3>
       <p className="service-desc">{servicio.desc}</p>
-      <span className={`service-underline ${hovered ? 'service-underline--visible' : ''}`} />
+      <span
+        className={`service-underline ${hovered ? "service-underline--visible" : ""}`}
+      />
     </div>
   );
 }
 
-function Section({ id, children, className = '' }) {
+function SkillCard({ grupo }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      className={`skill-card ${hovered ? "skill-card--hovered" : ""}`}
+      style={{ "--skill-color": grupo.color }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className="skill-card-topbar" />
+
+      <div className="skill-card-header">
+        <span className="skill-card-icon">{grupo.icono}</span>
+        <h3 className="skill-card-cat">{grupo.categoria}</h3>
+      </div>
+
+      <div className="skill-pills">
+        {grupo.items.map((item) => (
+          <span key={item} className="skill-pill">
+            {item}
+          </span>
+        ))}
+      </div>
+
+      <span
+        className={`skill-underline ${hovered ? "skill-underline--visible" : ""}`}
+      />
+    </div>
+  );
+}
+
+function Section({ id, children, className = "" }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.1 },
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -162,7 +338,7 @@ function Section({ id, children, className = '' }) {
     <section
       id={id}
       ref={ref}
-      className={`section ${visible ? 'section--visible' : ''} ${className}`}
+      className={`section ${visible ? "section--visible" : ""} ${className}`}
     >
       {children}
     </section>
@@ -179,14 +355,14 @@ const Contenido = () => {
         <div className="bio-grid">
           <div className="bio-text">
             <p className="bio-label"> SOBRE MÍ</p>
-            <h2 className="bio-heading">Ingeniero Electrónico</h2>
+            <h2 className="bio-heading">Ingeniero </h2>
             <p className="bio-body">
               Estudiante de Ingeniería Electrónica con enfoque en diseño
               electrónico, desarrollo de sistemas embebidos y soluciones
-              tecnológicas basadas en hardware y software. Cuento con experiencia
-              en análisis, simulación y diseño de circuitos electrónicos
-              analógicos y digitales, programación de microcontroladores e
-              integración de sensores y actuadores.
+              tecnológicas basadas en hardware y software. Cuento con
+              experiencia en análisis, simulación y diseño de circuitos
+              electrónicos analógicos y digitales, programación de
+              microcontroladores e integración de sensores y actuadores.
             </p>
             <p className="bio-body">
               Me caracterizo por ser analítico, paciente, orientado al
@@ -194,11 +370,12 @@ const Contenido = () => {
               eficientes e innovadoras.
             </p>
           </div>
+
           <div className="bio-stats">
             {[
-              { num: '10+', label: 'Proyectos' },
-              { num: '3+',  label: 'Años estudiando' },
-              { num: '5+',  label: 'Tecnologías' },
+              { num: "12+", label: "Proyectos" },
+              { num: "5+", label: "Años estudiando" },
+              { num: "10+", label: "Tecnologías" },
             ].map(({ num, label }) => (
               <div key={label} className="bio-stat">
                 <span className="bio-stat-num">{num}</span>
@@ -209,13 +386,23 @@ const Contenido = () => {
         </div>
       </Section>
 
+      <Section id="tecnologias" className="section-tecnologias">
+        <p className="section-label"> TECNOLOGÍAS</p>
+        <h2 className="section-heading">Stack & Herramientas</h2>
+        <div className="skills-grid">
+          {SKILLS.map((grupo) => (
+            <SkillCard key={grupo.categoria} grupo={grupo} />
+          ))}
+        </div>
+      </Section>
 
       <Section id="skills" className="section-services">
         <p className="section-label"> SERVICIOS DESTACADOS</p>
         <h2 className="section-heading">¿Qué puedo hacer por ti?</h2>
         <p className="section-sub">
-          Soluciones adaptadas a entornos académicos o profesionales.
-          Desde análisis de requerimientos hasta documentación técnica.</p>
+          Soluciones adaptadas a entornos académicos o profesionales. Desde
+          análisis de requerimientos hasta documentación técnica.
+        </p>
 
         <div className="services-grid">
           {SERVICIOS.map((s) => (
@@ -224,16 +411,15 @@ const Contenido = () => {
         </div>
       </Section>
 
-
       <Section id="proyectos" className="section-projects">
         <p className="section-label"> PROYECTOS REALIZADOS</p>
         <h2 className="section-heading">Trabajos destacados</h2>
         <div className="projects-grid">
           {PROYECTOS.map((p, i) => (
-            <ProjectCard key={p.id} proyecto={p} index={i} /> ))}
+            <ProjectCard key={p.id} proyecto={p} index={i} />
+          ))}
         </div>
       </Section>
-
     </div>
   );
 };

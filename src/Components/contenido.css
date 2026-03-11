@@ -82,11 +82,11 @@
   margin-bottom: 56px;
 }
 
-
 .section-bio {
   border-bottom: 1px solid rgba(0, 168, 212, 0.12);
   position: relative;
   overflow: hidden;
+  padding: 80px 24px;
 }
 
 .section-bio::before {
@@ -103,34 +103,35 @@
 
 .bio-grid {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 64px;
+  grid-template-columns: 1fr auto; 
+  gap: 48px;
   align-items: center;
   position: relative;
 }
 
 .bio-label {
-  font-family: "Pixelify Sans", sans-serif;
+   font-family: "Pixelify Sans", sans-serif;
   color: #00a8d4;
-  font-size: 1.5rem;
-  letter-spacing: 0.3em;
+  font-size: 1.5rem;         
+  letter-spacing: 0.2em;       
   margin-bottom: 16px;
+  text-transform: uppercase;
 }
 
 .bio-heading {
   font-family: 'Orbitron', sans-serif;
   color: #0a1a4a;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: clamp(1.4rem, 5vw, 2.8rem); 
+  letter-spacing: 0.04em;      
   margin-bottom: 28px;
   line-height: 1.2;
+  word-break: break-word;     
 }
 
 .bio-body {
   font-family: 'Inter', sans-serif;
   color: #475569;
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 2.5vw, 1rem); 
   line-height: 1.8;
   margin-bottom: 16px;
   max-width: 600px;
@@ -139,8 +140,8 @@
 .bio-stats {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  min-width: 140px;
+  gap: 20px;
+  min-width: 130px;
 }
 
 .bio-stat {
@@ -151,14 +152,14 @@
   background: linear-gradient(135deg, #f0f4ff, #e8f4fc);
   border: 1px solid rgba(0, 168, 212, 0.2);
   border-radius: 14px;
-  padding: 20px 24px;
+  padding: 16px 20px;
   text-align: center;
   animation: statCount 0.6s ease both;
 }
 
 .bio-stat-num {
   font-family: 'Orbitron', sans-serif;
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 4vw, 2rem);
   font-weight: 900;
   color: #0a1a4a;
   line-height: 1;
@@ -166,12 +167,57 @@
 
 .bio-stat-label {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
   color: #00a8d4;
   text-transform: uppercase;
 }
 
+
+@media (max-width: 900px) {
+  .bio-grid {
+    gap: 32px;
+  }
+
+  .bio-stats {
+    min-width: 110px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bio-grid {
+    grid-template-columns: 1fr;  
+    gap: 32px;
+  }
+
+  .bio-text {
+    order: 1;
+  }
+
+  .bio-stats {
+    order: 2;
+    flex-direction: row;         
+    justify-content: center;
+    flex-wrap: wrap;
+    min-width: unset;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .bio-stat {
+    flex: 1;
+    min-width: 90px;
+    padding: 14px 12px;
+  }
+
+  .bio-body {
+    max-width: 100%;             
+  }
+
+  .bio-heading {
+    letter-spacing: 0.02em;
+  }
+}
 
 .section-services {
   background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
@@ -237,6 +283,157 @@
 
 .service-underline--visible {
   transform: translateX(-50%) scaleX(1);
+}
+.section-tecnologias {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 168, 212, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+
+.section-tecnologias::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 168, 212, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 168, 212, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 14s linear infinite;
+  pointer-events: none;
+}
+
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  position: relative;
+}
+
+
+.skill-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+  padding: 0 24px 24px;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  cursor: default;
+}
+
+.skill-card--hovered {
+  border-color: color-mix(in sRGB, var(--skill-color) 50%, transparent);
+  box-shadow: 0 8px 32px color-mix(in sRGB, var(--skill-color) 12%, transparent);
+  transform: translateY(-4px);
+}
+
+
+.skill-card-topbar {
+  height: 3px;
+  width: 100%;
+  margin: 0 -24px 20px;
+  width: calc(100% + 48px);
+  background: linear-gradient(
+    90deg,
+    var(--skill-color),
+    color-mix(in sRGB, var(--skill-color) 40%, transparent)
+  );
+  border-radius: 3px 3px 0 0;
+  position: relative;
+}
+
+
+.skill-card-topbar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: var(--skill-color);
+  filter: blur(8px);
+  opacity: 0.35;
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.skill-card-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.skill-card-cat {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0a1a4a;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+
+.skill-pill {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--skill-color);
+  background: color-mix(in sRGB, var(--skill-color) 8%, transparent);
+  border: 1px solid color-mix(in sRGB, var(--skill-color) 35%, transparent);
+  border-radius: 8px;
+  padding: 4px 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.skill-card--hovered .skill-pill {
+  background: color-mix(in sRGB, var(--skill-color) 14%, transparent);
+  border-color: color-mix(in sRGB, var(--skill-color) 55%, transparent);
+}
+
+
+.skill-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--skill-color), transparent);
+  transition: transform 0.35s cubic-bezier(.4, 0, .2, 1);
+  display: block;
+}
+
+.skill-underline--visible {
+  transform: translateX(-50%) scaleX(1);
+}
+
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .section-projects {

@@ -48,7 +48,6 @@ export default function Footer() {
       icon: '✉️',
       label: 'Correo',
       href: 'caicedosantiago256@gmail.com',
-      tooltip: 'tucorreo@email.com',
     },
   ];
 
